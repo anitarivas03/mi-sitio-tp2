@@ -1,9 +1,12 @@
-function Servicios (){
-    return(
-        <div className="pagina">
-            <h1>Pagina de Servicios</h1>
-        </div>
-    );
+function Servicios() {
+  return (
+    <div className="pagina">
+      <h1>Página de Servicios</h1>
+      <div className="card">
+        <p>Bienvenido a mi página de servicios</p>
+      </div>
+    </div>
+  );
 }
 
 export default Servicios;
