@@ -7,7 +7,7 @@ import Footer from "./componentes/Footer";
 import NoEncontrado from "./paginas/NoEncontrado";
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/mi-sitio-tp2/">
       <Navbar />
       <Routes>
         <Route path="/" element={<Inicio />} />
