@@ -82,89 +82,105 @@ function Contacto() {
     <div className="pagina">
       <h1>Formulario de Contacto</h1>
 
-      <form
-        className="formulario-contacto"
-        ref={form}
-        onSubmit={sendEmail}
-        noValidate
-      >
-        {/* Campo oculto: EmailJS lo toma para rellenar {{name}} en el template */}
-        <input
-          type="hidden"
-          name="name"
-          value={`${formData.nombre} ${formData.apellido}`.trim()}
-        />
-
-        <div className="campo">
-          <label htmlFor="nombre">Nombre</label>
+      <div className="contacto-layout">
+        <form
+          className="formulario-contacto"
+          ref={form}
+          onSubmit={sendEmail}
+          noValidate
+        >
+          {/* Campo oculto: EmailJS lo toma para rellenar {{name}} en el template */}
           <input
-            type="text"
-            id="nombre"
-            name="nombre"
-            value={formData.nombre}
-            onChange={handleChange}
-            className={errores.nombre ? "campo-error": ""}
+            type="hidden"
+            name="name"
+            value={`${formData.nombre} ${formData.apellido}`.trim()}
           />
-          {errores.nombre && <span className="error">{errores.nombre}</span>}
+
+          <div className="campo">
+            <label htmlFor="nombre">Nombre</label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              value={formData.nombre}
+              onChange={handleChange}
+              className={errores.nombre ? "campo-error" : ""}
+            />
+            {errores.nombre && <span className="error">{errores.nombre}</span>}
+          </div>
+
+          <div className="campo">
+            <label htmlFor="apellido">Apellido</label>
+            <input
+              type="text"
+              id="apellido"
+              name="apellido"
+              value={formData.apellido}
+              onChange={handleChange}
+              className={errores.apellido ? "campo-error" : ""}
+            />
+            {errores.apellido && (
+              <span className="error">{errores.apellido}</span>
+            )}
+          </div>
+
+          <div className="campo">
+            <label htmlFor="email">Correo Electrónico</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              title="El correo debe contener un @ (ejemplo: nombre@ejemplo.com)"
+              className={errores.email ? "campo-error" : ""}
+            />
+            {errores.email && <span className="error">{errores.email}</span>}
+          </div>
+
+          <div className="campo">
+            <label htmlFor="mensaje">Mensaje</label>
+            <textarea
+              id="mensaje"
+              name="message"
+              rows="5"
+              maxLength={300}
+              value={formData.mensaje}
+              onChange={(e) =>
+                setFormData({ ...formData, mensaje: e.target.value })
+              }
+              className={errores.mensaje ? "campo-error" : ""}
+            />
+            <span className="contador">{formData.mensaje.length}/300</span>
+            {errores.mensaje && (
+              <span className="error">{errores.mensaje}</span>
+            )}
+          </div>
+
+          <button type="submit" disabled={enviando}>
+            {enviando ? "Enviando..." : "Enviar mensaje"}
+          </button>
+
+          {estadoEnvio === "ok" && (
+            <p className="mensaje-exito">Mensaje enviado correctamente</p>
+          )}
+          {estadoEnvio === "error" && (
+            <p className="mensaje-error-envio">
+              Hubo un error al enviar el mensaje. Intentá de nuevo.
+            </p>
+          )}
+        </form>
+
+        <div className="mapa">
+          <iframe
+            title="Mapa de ubicación"
+            src="https://www.google.com/maps?q=Universidad%20Cat%C3%B3lica%20de%20Salta&output=embed"
+            loading="lazy"
+            allowFullScreen
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
-
-        <div className="campo">
-          <label htmlFor="apellido">Apellido</label>
-          <input
-            type="text"
-            id="apellido"
-            name="apellido"
-            value={formData.apellido}
-            onChange={handleChange}
-            className={errores.apellido ? "campo-error": ""}
-          />
-          {errores.apellido && <span className="error">{errores.apellido}</span>}
-        </div>
-
-        <div className="campo">
-          <label htmlFor="email">Correo Electrónico</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            title="El correo debe contener un @ (ejemplo: nombre@ejemplo.com"
-            className={errores.email ? "campo-error": ""}
-          />
-          {errores.email && <span className="error">{errores.email}</span>}
-        </div>
-
-        <div className="campo">
-          <label htmlFor="mensaje">Mensaje</label>
-          <textarea
-            id="mensaje"
-            name="message"
-            rows="5"
-            maxLength={300}
-            value={formData.mensaje}
-            onChange={(e) =>
-              setFormData({ ...formData, mensaje: e.target.value })
-            }
-            className={errores.mensaje ? "campo-error": ""}
-          />
-          <span className="contador">{formData.mensaje.length}/300</span>
-          {errores.mensaje && <span className="error">{errores.mensaje}</span>}
-        </div>
-
-        <button type="submit" disabled={enviando}>
-          {enviando ? "Enviando..." : "Enviar mensaje"}
-        </button>
-
-        {estadoEnvio === "ok" && (
-          <p className="mensaje-exito">Mensaje enviado correctamente</p>
-        )}
-        {estadoEnvio === "error" && (
-          <p className="mensaje-error-envio">
-            Hubo un error al enviar el mensaje. Intentá de nuevo.
-          </p>
-        )}
-      </form>
+      </div>
     </div>
   );
 }

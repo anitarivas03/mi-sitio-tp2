@@ -32,6 +32,7 @@ body::before {
   background: #b57de0;
   top: -160px;
   left: -180px;
+  animation: flotar1 8s ease-in-out infinite;
 }
 
 body::after {
@@ -40,6 +41,19 @@ body::after {
   background: #6fa8f0;
   bottom: -180px;
   right: -160px;
+  animation: flotar2 9s ease-in-out infinite;
+}
+
+@keyframes flotar1 {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(120px, 90px) scale(1.3); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes flotar2 {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(-120px, -90px) scale(1.3); }
+  100% { transform: translate(0, 0) scale(1); }
 }
 
 h1, h2 {
@@ -61,7 +75,6 @@ h1, h2 {
   font-weight: 600;
   letter-spacing: 0.02em;
   position: relative;
-  transition: color 0.2s ease;
 }
 
 .navbar a::after {
@@ -110,6 +123,13 @@ h1, h2 {
   text-shadow: 0 2px 12px rgba(255, 255, 255, 0.6);
 }
 
+.subtitulo {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  color: #4a2e6b;
+  font-size: 1.8rem;
+}
+
 /* Card de bienvenida */
 .card {
   background-color: #ffffff;
@@ -131,10 +151,167 @@ h1, h2 {
   font-weight: 600;
 }
 
-/* Formulario de contacto */
-.formulario-contacto {
+/* Inicio: artículos */
+.estado-carga {
+  font-weight: 600;
+  color: #4a3b5c;
+}
+
+.articulos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
   width: 100%;
-  max-width: 420px;
+  margin-top: 1rem;
+}
+
+.articulo-card {
+  background-color: #ffffff;
+  border: 2px solid #c9aee0;
+  border-radius: 14px;
+  overflow: hidden;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.articulo-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(201, 174, 224, 0.4);
+}
+
+.articulo-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.articulo-contenido {
+  padding: 1rem 1.2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex: 1;
+}
+
+.articulo-contenido h3 {
+  font-family: 'Rozha One', serif;
+  font-size: 1.05rem;
+  color: #4a2e6b;
+}
+
+.articulo-descripcion {
+  font-size: 0.85rem;
+  color: #4a3b5c;
+}
+
+.articulo-autor {
+  font-size: 0.75rem;
+  color: #9b6bc7;
+  font-weight: 600;
+}
+
+.articulo-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.articulo-tags span {
+  background-color: #fdeaf5;
+  color: #4a3b5c;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+}
+
+.articulo-contenido a {
+  margin-top: auto;
+  color: #9b6bc7;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+  border-bottom: 2px solid #9b6bc7;
+  align-self: flex-start;
+}
+
+/* Servicios */
+.intro-servicios {
+  max-width: 560px;
+  color: #4a3b5c;
+  margin-bottom: 1.5rem;
+}
+
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  max-width: 900px;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.servicio-card {
+  background-color: #ffffff;
+  border: 2px solid #ece3f5;
+  border-top: 6px solid var(--acento, #c9aee0);
+  border-radius: 14px;
+  padding: 1.6rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.servicio-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 28px color-mix(in srgb, var(--acento) 35%, transparent);
+}
+
+.icono-servicio {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: color-mix(in srgb, var(--acento) 18%, white);
+}
+
+.icono-servicio img {
+  width: 44px;
+  height: 44px;
+}
+
+.servicio-card h3 {
+  font-family: 'Rozha One', serif;
+  color: #4a2e6b;
+  font-size: 1.2rem;
+}
+
+.servicio-card p {
+  font-size: 0.85rem;
+  color: #4a3b5c;
+  text-align: center;
+}
+
+/* Contacto: formulario + mapa */
+.contacto-layout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.formulario-contacto {
+  flex: 1 1 340px;
+  max-width: 480px;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
@@ -143,6 +320,22 @@ h1, h2 {
   border-radius: 14px;
   border: 2px solid #c9aee0;
   box-shadow: 0 6px 18px rgba(201, 174, 224, 0.3);
+}
+
+.mapa {
+  flex: 1 1 340px;
+  min-height: 420px;
+  border: 2px solid #c9aee0;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(201, 174, 224, 0.3);
+}
+
+.mapa iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  border: 0;
 }
 
 .campo {
@@ -233,6 +426,20 @@ h1, h2 {
   text-align: center;
 }
 
+/* Página 404 */
+.volver-inicio {
+  margin-top: 1.5rem;
+  color: #9b6bc7;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 2px solid #9b6bc7;
+  transition: opacity 0.2s ease;
+}
+
+.volver-inicio:hover {
+  opacity: 0.7;
+}
+
 /* Footer */
 .footer {
   background-color: #c9aee0;
@@ -240,26 +447,6 @@ h1, h2 {
   text-align: center;
   padding: 1rem;
   font-size: 0.85rem;
-}
-/* Blobs con movimiento suave */
-body::before {
-  animation: flotar1 8s ease-in-out infinite;
-}
-
-body::after {
-  animation: flotar2 9s ease-in-out infinite;
-}
-
-@keyframes flotar1 {
-  0%   { transform: translate(0, 0) scale(1); }
-  50%  { transform: translate(120px, 90px) scale(1.3); }
-  100% { transform: translate(0, 0) scale(1); }
-}
-
-@keyframes flotar2 {
-  0%   { transform: translate(0, 0) scale(1); }
-  50%  { transform: translate(-120px, -90px) scale(1.3); }
-  100% { transform: translate(0, 0) scale(1); }
 }
 
 /* Responsive */
@@ -275,7 +462,7 @@ body::after {
   }
 
   .card {
-    padding: 1.5rem 1.5rem;
+    padding: 1.5rem;
   }
 
   .card p {
@@ -287,15 +474,6 @@ body::after {
     max-width: 100%;
   }
 }
-.volver-inicio {
-  margin-top: 1.5rem;
-  color: #9b6bc7;
-  font-weight: 600;
-  text-decoration: none;
-  border-bottom: 2px solid #9b6bc7;
-  transition: opacity 0.2s ease;
-}
-
-.volver-inicio:hover {
-  opacity: 0.7;
+.pagina h1 + .subtitulo {
+  margin-top: 0;
 }
